@@ -665,10 +665,10 @@ class Bucket(object):
 
         def delete_keys2(hdrs):
             hdrs = hdrs or {}
-            data = u"""<?xml version="1.0" encoding="UTF-8"?>"""
-            data += u"<Delete>"
+            data = """<?xml version="1.0" encoding="UTF-8"?>"""
+            data += "<Delete>"
             if quiet:
-                data += u"<Quiet>true</Quiet>"
+                data += "<Quiet>true</Quiet>"
             count = 0
             while count < 1000:
                 try:
@@ -695,11 +695,11 @@ class Bucket(object):
                     result.errors.append(error)
                     continue
                 count += 1
-                data += u"<Object><Key>%s</Key>" % xml.sax.saxutils.escape(key_name)
+                data += "<Object><Key>%s</Key>" % xml.sax.saxutils.escape(key_name)
                 if version_id:
-                    data += u"<VersionId>%s</VersionId>" % version_id
-                data += u"</Object>"
-            data += u"</Delete>"
+                    data += "<VersionId>%s</VersionId>" % version_id
+                data += "</Object>"
+            data += "</Delete>"
             if count <= 0:
                 return False  # no more
             data = data.encode('utf-8')

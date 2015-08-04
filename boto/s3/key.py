@@ -187,7 +187,7 @@ class Key(object):
         if value:
             if not isinstance(value, six.string_types):
                 value = value.decode('utf-8')
-            self.local_hashes['md5'] = binascii.a2b_base64(value)
+            self.local_hashes['md5'] = binascii.a2b_base64(value.encode('ascii'))
         elif 'md5' in self.local_hashes:
             del self.local_hashes['md5']
 
